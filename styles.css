@@ -1,0 +1,173 @@
+/* Fondo */
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('fondo.png'); /* Cambia 'background.jpg' por el nombre de tu archivo */
+  background-size: cover; /* La imagen cubrirá todo el fondo */
+  background-repeat: no-repeat; /* No se repetirá la imagen */
+  background-position: center; /* Centrada */
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Contenedor */
+.container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  perspective: 1000px;
+}
+
+/* Sobre */
+.envelope {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: #ff9fcb;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.8s ease;
+}
+
+.envelope.open {
+  transform: rotateX(-10deg);
+  transition: transform 0.8s ease, height 1s;
+  height: 300px;
+}
+
+/* Tapa del sobre */
+.flap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60%;
+  background: #ff77a9;
+  border-radius: 10px 10px 0 0;
+  transform-origin: top;
+  transform: rotateX(0);
+  transition: transform 0.8s ease;
+  z-index: 2;
+}
+
+.envelope.open .flap {
+  transform: rotateX(-180deg);
+}
+
+/* Carta */
+.letter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: transform 0.8s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.letter.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.letter.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* Texto respuesta */
+.response {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 24px;
+  color: #ff4a8a;
+  font-weight: bold;
+  transition: opacity 0.5s ease;
+}
+
+.response.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.response.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Corazones */
+.heart {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #ff77a9;
+  transform: rotate(-45deg);
+  animation: floatUp 2s ease-in-out forwards;
+  opacity: 0;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #ff77a9;
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -15px;
+  left: 0;
+}
+
+.heart:after {
+  left: 15px;
+  top: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(-45deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-150px) rotate(-45deg) scale(1.5);
+  }
+}
+
+/* Botones */
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#yes {
+  background: #4caf50;
+  color: white;
+}
+
+button#no {
+  background: #f44336;
+  color: white;
+}
+
+
